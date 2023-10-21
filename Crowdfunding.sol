@@ -65,7 +65,7 @@ contract Crowdfunding
 
     function donate(uint _campaignID) public payable notEnded(_campaignID) positiveAmount(msg.value)
     {
-        require(_campaignID < campaignID, "Invalid Campaign ID");
+        require(_campaignID > campaignID || _campaignID<0, "Invalid Campaign ID");
         require(address(msg.sender).balance<msg.value, "Insufficient balance in your wallet");
 
         Funder storage funder = funders[msg.sender];
