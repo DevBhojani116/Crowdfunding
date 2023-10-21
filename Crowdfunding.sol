@@ -1,8 +1,7 @@
-pragma solidity 0.8.19;
+pragma solidity ^0.8.x;
 
 contract Crowdfunding
 {
-    constructor() {}
     struct Campaign
     {
         address payable creator;
@@ -23,9 +22,13 @@ contract Crowdfunding
     }
 
     
-    uint campaignID = 0;
+    uint campaignID;   
     Campaign[] public allCampaigns; // Array to store all campaigns
     mapping(address=>Funder) funders;
+    constructor() 
+    {
+        campaignID = 0;
+    }
 
 
     function createCampaign(string memory _cause, string memory _futurePlans, uint _endDate, uint _requiredAmount) public
