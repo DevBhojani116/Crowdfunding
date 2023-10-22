@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.x;
 
 contract Crowdfunding
@@ -22,16 +23,12 @@ contract Crowdfunding
     }
 
     
-    uint campaignID;   
+    uint campaignID = 0;
     Campaign[] public allCampaigns; // Array to store all campaigns
     mapping(address=>Funder) funders;
-    constructor() 
-    {
-        campaignID = 0;
-    }
 
 
-    function createCampaign(string memory _cause, string memory _futurePlans, uint _endDate, uint _requiredAmount) public
+    function createCampaign(string memory _cause, string memory _futurePlans, uint _endDate, uint _requiredAmount) external
     {
         require(_requiredAmount>0, "Required amount must be positive");
         require(_endDate>block.timestamp, "Campaign should end after its creation");
@@ -63,13 +60,13 @@ contract Crowdfunding
         _;
     }
 
-    function donate(uint _campaignID) public payable notEnded(_campaignID) positiveAmount(msg.value)
+    function donate(uint _campaignID) external payable notEnded(_campaignID) positiveAmount(msg.value)
     {
-        require(_campaignID > campaignID || _campaignID<0, "Invalid Campaign ID");
-        require(address(msg.sender).balance<msg.value, "Insufficient balance in your wallet");
+        require(_campaignID<campaignID, "Invalid Campaign ID");
+        require(address(msg.sender).balance>=msg.value, "Insufficient balance in your wallet");
 
         Funder storage funder = funders[msg.sender];
-        require(funder.donatedInThis[campaignID]>0, "You have already donated to this campaign");
+        require(funder.donatedInThis[_campaignID]==0, "You have already donated to this campaign");
 
         allCampaigns[_campaignID].raisedAmount += msg.value;
         allCampaigns[_campaignID].creator.transfer(msg.value);
