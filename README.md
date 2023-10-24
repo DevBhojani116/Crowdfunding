@@ -40,48 +40,62 @@ To deploy the Crowdfunding smart contract in the Remix development environment, 
 8. Once deployed, you can interact with the contract by calling its functions through Remix's user interface.
 
 ## Screenshots
-1. ### Contract Deployment:
-![Campaign Creation](Screenshots\Deploy.png)
+### 1. Contract Deployment:
+![Deploy](Screenshots/Deploy.png)
 
-2. ### Campaign Creation: 
-![Campaign Creation](Screenshots\Campaign_Creation1.png)
+### 2. Campaign Creation: 
+![Campaign_Creation1](Screenshots/Campaign_Creation1.png)
+<br>
 Campaign ID 0
 <br>
 <br>
 <br>
-![Campaign Creation](Screenshots\Campaign_Creation2.png)
+![Campaign_Creation2](Screenshots/Campaign_Creation2.png)
+<br>
 Campaign ID 1
 
 
-3. ### Donation Process: 
-![Donation Process](Screenshots\ExcessFundTransferred.png)
+### 3. Donation Process: 
+![ExcessFundTransferred](Screenshots/ExcessFundTransferred.png)
+<br>
 Entered Value was 2 wei but the contract wanted only 1 wei so the contract transferred only 1 wei(campaign ID 0).
 <br>
 <br>
 <br>
-![Donation Process](Screenshots\AmountAlreadyFulfilled.png)
+
+![AmountAlreadyFulfilled](Screenshots/AmountAlreadyFulfilled.png)
+<br>
 The campaign's fund requirement was already fulfilled so, the donate function didn't execute(campaign ID 0).
 <br>
 <br>
 <br>
-![Donation Process](Screenshots\DonatedFully.png)
+
+![DonatedFully.png](Screenshots/DonatedFully.png)
+<br>
 The campaign's fund requirement was 123 and the donor wanted to transfer 1 wei so it got transferred(campaign ID 1).
 <br>
 <br>
 <br>
-![Donation Process](Screenshots\AlreadyDonated.png)
+
+![AlreadyDonated.png](Screenshots/AlreadyDonated.png)
+<br>
 The donor had already donated in this campaign(campaign ID 1).
 
-4. ### Campaign Visibility: 
-![Donation Process](Screenshots\allCampaigns(0).png)
+### 4. Campaign Visibility: 
+![allCampaigns(0).png](Screenshots/allCampaigns(0).png)
+<br>
 Called allCampaigns array(campaign ID 0).
 <br>
 <br>
 <br>
-![Donation Process](Screenshots\allCampaigns(1).png)
+
+![allCampaigns(1).png](Screenshots/allCampaigns(1).png)
+<br>
 Called allCampaigns array(campaign ID 1).
 <br>
 <br>
 <br>
-![Donation Process](Screenshots\allCampaigns(1).png)
+
+![viewCampaign.png](Screenshots/viewCampaign.png)
+<br>
 Called viewCampaigns function.
