@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Crowdfunding smart contract is a Solidity-based Ethereum smart contract designed to facilitate fundraising for various causes. This contract allows campaign creators to set fundraising goals and start campaigns, while other users (funders) can donate to these campaigns. This README provides an overview of the contract, instructions for deploying it using Remix, and a section to add screenshots demonstrating its functionality.
+The Crowdfunding smart contract is a Solidity-based Ethereum smart contract designed to facilitate fundraising for various causes. This contract allows campaign creators to set fundraising goals and start campaigns, while other users (funders) can donate to these campaigns. This README provides an overview of the contract, instructions for deploying it using Remix, and screenshots demonstrating its functionality.
 
 ## Contract Features
 
@@ -25,7 +25,7 @@ To deploy the Crowdfunding smart contract in the Remix development environment, 
 
 1. Open [Remix](https://remix.ethereum.org/).
 
-2. Create a new Solidity file or open an existing one.
+2. Create a new Solidity file.
 
 3. Copy and paste the Crowdfunding contract code into the editor.
 
@@ -33,9 +33,9 @@ To deploy the Crowdfunding smart contract in the Remix development environment, 
 
 5. Compile the contract by selecting the appropriate compiler version in the Remix sidebar and clicking the "Compile" button.
 
-6. Deploy the contract by selecting the "Deploy and Run Transactions" plugin in Remix, choosing the contract, and providing any required constructor arguments.
+6. Deploy the contract by selecting the "Deploy" button.
 
-7. Connect your Ethereum wallet (e.g., MetaMask) to Remix and deploy the contract to the desired network (e.g., Ropsten, Mainnet).
+7. Connect your Ethereum wallet (e.g., MetaMask) to Remix and deploy the contract to the desired network (I checked its working on VM and then deployed it on Sepolia testnet).
 
 8. Once deployed, you can interact with the contract by calling its functions through Remix's user interface.
 
