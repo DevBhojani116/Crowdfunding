@@ -28,6 +28,27 @@ contract Crowdfunding
     Campaign[] public allCampaigns; // Array to store all campaigns
     mapping(address=>Funder) funders; //this mapping is to track each funder using their address
 
+    //this event will be emitted when a new campaign is created
+    event campaignCreation
+    (
+        address _creator,
+        string _cause,
+        string _futurePlans,
+        uint _startDate,
+        uint _endDate, 
+        uint _requiredAmount
+    );
+
+    //this event will be emitted when a funder donates to a campaign
+    event donation 
+    (
+        address _funder,
+        uint _campaignID,
+        uint _donationAmount,
+        uint _donationTime
+    );
+
+    
     function createCampaign(string memory _cause, string memory _futurePlans, uint _endDate, uint _requiredAmount) external
     {
         require(_requiredAmount>0, "Required amount must be positive");
@@ -46,6 +67,8 @@ contract Crowdfunding
             raisedAmount: 0
         }));
         campaignID++;
+
+        emit campaignCreation(msg.sender, _cause, _futurePlans, block.timestamp, _endDate, _requiredAmount);
     }
 
     //checks whether the time stated by the creator has passed or can anyone still donate in it
@@ -92,13 +115,16 @@ contract Crowdfunding
             allCampaigns[_campaignID].creator.transfer(amountToBeTransferred);
             allCampaigns[_campaignID].raisedAmount = allCampaigns[_campaignID].requiredAmount;
             funder.donatedInThis[_campaignID] += amountToBeTransferred;
+            emit donation(msg.sender, _campaignID, amountToBeTransferred, block.timestamp);
             return ("Creator's amount requirement already fulfilled so transferred only the remaining amount");
         }
         else
         {
-            allCampaigns[_campaignID].raisedAmount += msg.value;
-            allCampaigns[_campaignID].creator.transfer(msg.value);
-            funder.donatedInThis[_campaignID] += msg.value;
+            uint amountToBeTransferred = msg.value;
+            allCampaigns[_campaignID].raisedAmount += amountToBeTransferred;
+            allCampaigns[_campaignID].creator.transfer(amountToBeTransferred);
+            funder.donatedInThis[_campaignID] += amountToBeTransferred;
+            emit donation(msg.sender, _campaignID, amountToBeTransferred, block.timestamp);
             return ("Donated");
         }
     }
